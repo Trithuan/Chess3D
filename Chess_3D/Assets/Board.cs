@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        print("salut");
-    }
+	GameObject[,] TileArray  = new GameObject[8,8];
+	// Start is called before the first frame update
+	void Start()
+	{
+		for(int i = 0; i < 8; i++)
+		{
+			for(int j = 0; j < 8; j++)
+			{
+				GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+				cube.transform.position = new Vector3(i+(0.1f*i), 0, j+(0.1f*j));
+				TileArray[i, j] = cube;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+			}
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		
+	}
 }
