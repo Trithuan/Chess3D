@@ -15,9 +15,11 @@ public class Board : MonoBehaviour
 				GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 				cube.transform.position = new Vector3(i+(0.1f*i), 0, j+(0.1f*j));
 				cube.transform.localScale  = new Vector3(1, 0.1f, 1);
+				cube.transform.parent = gameObject.transform;
+				if((i + j) % 2 == 1){
+				cube.GetComponent<Renderer>().material.color = Color.black;
+				}
 				TileArray[i, j] = cube;
-
-
 			}
 		}
 	}
