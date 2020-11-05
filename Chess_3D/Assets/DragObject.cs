@@ -35,6 +35,8 @@ public class DragObject : MonoBehaviour
 	}
 	void OnMouseUp()
 	{
-		transform.position = new Vector3(GetMouseWorldPos().x + mOffset.x, static_height, (int)GetMouseWorldPos().z + mOffset.z);
+		int newpos_x = ((int)(GetMouseWorldPos().x + mOffset.x)/Board.taille_cases)*Board.taille_cases;
+		int newpos_z = ((int)(GetMouseWorldPos().z + mOffset.z)/Board.taille_cases)*Board.taille_cases;
+		transform.position = new Vector3(newpos_x, static_height,newpos_z);
 	}
 }

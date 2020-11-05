@@ -8,11 +8,11 @@ public class Board : MonoBehaviour
 {
 	GameObject[,] TileArray  = new GameObject[8,8];
 	// Start is called before the first frame update
-	float taille_cases = 100;
-	float épaisseur_cases = 1;
-	float rayon = 70;
-	float taille_pièce = 80;
-	float taille_pion = 50;
+	public static int taille_cases = 100;
+	public static float épaisseur_cases = 1;
+	public static float rayon = 70;
+	public static float taille_pièce = 80;
+	public static float taille_pion = 50;
 
 	void InitCase(){
 	for(int i = 0; i < 8; i++)
