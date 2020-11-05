@@ -6,7 +6,7 @@ public class DragObject : MonoBehaviour
 {
 	private Vector3 mOffset;
 	private float mZCoord;
-	private int jump_size = 150;
+	private int jump_size = 200;
 	private float static_height = 0;
 
 
