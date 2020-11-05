@@ -15,4 +15,5 @@ public class CameraPos : MonoBehaviour
     {
         
     }
+    //x:350.3 y:800 z:80 rx:73.15701
 }
