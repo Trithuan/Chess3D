@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
 	// Start is called before the first frame update
 	float taille_cases = 100;
 	float épaisseur_cases = 1;
-	float rayon = 50;
+	float rayon = 70;
 	float taille_pièce = 80;
 	float taille_pion = 50;
 
@@ -39,11 +39,13 @@ public class Board : MonoBehaviour
 			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, taille_cases*7);
 			pièce.transform.parent = gameObject.transform;
 			pièce.GetComponent<Renderer>().material.color = Color.gray;
+			pièce.AddComponent<DragObject>();
 			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 			pion.transform.localScale  = new Vector3(rayon, taille_pion, rayon);
 			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*6);
 			pion.transform.parent = gameObject.transform;
 			pion.GetComponent<Renderer>().material.color = Color.gray;
+			pion.AddComponent<DragObject>();
 		}
 	}
 	void InitBlanc(){
@@ -53,11 +55,13 @@ public class Board : MonoBehaviour
 			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, 0);
 			pièce.transform.parent = gameObject.transform;
 			pièce.GetComponent<Renderer>().material.color = Color.red;
+			pièce.AddComponent<DragObject>();
 			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 			pion.transform.localScale  = new Vector3(rayon, taille_pion, rayon);
 			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*1);
 			pion.transform.parent = gameObject.transform;
 			pion.GetComponent<Renderer>().material.color = Color.red;
+			pion.AddComponent<DragObject>();
 		}
 	}
 	void InitPièce(){
