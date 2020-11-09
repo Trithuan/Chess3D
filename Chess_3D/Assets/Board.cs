@@ -32,53 +32,34 @@ public class Board : MonoBehaviour
 			}
 		}
 	}
-	void InitNoir(){
+	void InitPiece(Color color,int pion_z,int piece_z){
 		for(int i = 0; i < 8; i++){
 			GameObject pièce = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 			pièce.transform.localScale  = new Vector3(rayon, taille_pièce, rayon);
-			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, taille_cases*7);
+			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, taille_cases*piece_z);
 			pièce.transform.parent = gameObject.transform;
-			pièce.GetComponent<Renderer>().material.color = Color.gray;
+			pièce.GetComponent<Renderer>().material.color = color;
 			pièce.AddComponent<Pion>();
 			pièce.GetComponent<Pion>().x = i;
-			pièce.GetComponent<Pion>().z = 7;
+			pièce.GetComponent<Pion>().z = piece_z;
 			pièce.AddComponent<DragObject>();
 
 			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 			pion.transform.localScale  = new Vector3(rayon, taille_pion, rayon);
-			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*6);
+			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*pion_z);
 			pion.transform.parent = gameObject.transform;
-			pion.GetComponent<Renderer>().material.color = Color.gray;
+			pion.GetComponent<Renderer>().material.color = color;
 			pion.AddComponent<Pion>();
 			pion.GetComponent<Pion>().x = i;
-			pion.GetComponent<Pion>().z = 6;
+			pion.GetComponent<Pion>().z = pion_z;
 			pion.AddComponent<DragObject>();
 		}
-	}
-	void InitBlanc(){
-		for(int i = 0; i < 8; i++){
-			GameObject pièce = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-			pièce.transform.localScale  = new Vector3(rayon, taille_pièce, rayon);
-			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, 0);
-			pièce.transform.parent = gameObject.transform;
-			pièce.GetComponent<Renderer>().material.color = Color.red;
-			pièce.AddComponent<DragObject>();
-			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-			pion.transform.localScale  = new Vector3(rayon, taille_pion, rayon);
-			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*1);
-			pion.transform.parent = gameObject.transform;
-			pion.GetComponent<Renderer>().material.color = Color.red;
-			pion.AddComponent<DragObject>();
-		}
-	}
-	void InitPièce(){
-		InitNoir();
-		// InitBlanc();
 	}
 	void Start()
 	{
 		InitCase();
-		InitPièce();
+		InitPiece(Color.grey, 6,7);
+		InitPiece(Color.red, 1,0);
 	}
 
 	// Update is called once per frame
