@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
-	GameObject[,] TileArray  = new GameObject[8,8];
+	GameObject[,] PièceArray  = new GameObject[8,8];
 	// Start is called before the first frame update
 	public static int taille_cases = 100;
 	public static float épaisseur_cases = 1;
@@ -28,7 +28,7 @@ public class Board : MonoBehaviour
 				{
 					cube.GetComponent<Renderer>().material.color = Color.black;
 				}
-				TileArray[i, j] = cube;
+				// TileArray[i, j] = cube;
 			}
 		}
 	}
@@ -39,12 +39,17 @@ public class Board : MonoBehaviour
 			pièce.transform.position = new Vector3(i*taille_cases, taille_pièce, taille_cases*7);
 			pièce.transform.parent = gameObject.transform;
 			pièce.GetComponent<Renderer>().material.color = Color.gray;
+			pièce.AddComponent<Pion>();
+			pièce.GetComponent<Pion>().pos = new int[] {i, 7};
 			pièce.AddComponent<DragObject>();
+
 			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 			pion.transform.localScale  = new Vector3(rayon, taille_pion, rayon);
 			pion.transform.position = new Vector3(i*taille_cases, taille_pion, taille_cases*6);
 			pion.transform.parent = gameObject.transform;
 			pion.GetComponent<Renderer>().material.color = Color.gray;
+			pion.AddComponent<Pion>();
+			pion.GetComponent<Pion>().pos = new int[] {i, 6};
 			pion.AddComponent<DragObject>();
 		}
 	}
@@ -66,7 +71,7 @@ public class Board : MonoBehaviour
 	}
 	void InitPièce(){
 		InitNoir();
-		InitBlanc();
+		// InitBlanc();
 	}
 	void Start()
 	{

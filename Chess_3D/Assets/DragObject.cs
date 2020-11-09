@@ -8,15 +8,19 @@ public class DragObject : MonoBehaviour
 	private float mZCoord;
 	private int jump_size = 200;
 	private float static_height = 0;
+	private Vector3 startpos;
+
 
 
 	void OnMouseDown()
 	{
+		startpos = gameObject.transform.position;
 		print("click");
 		mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 		//Store offset = gameObject.transform.position - GetMouseWorldPos();
 		mOffset = gameObject.transform.position - GetMouseWorldPos();
 		static_height = gameObject.transform.position.y;
+
 	}
 	private Vector3 GetMouseWorldPos()
 	{
@@ -35,8 +39,15 @@ public class DragObject : MonoBehaviour
 	}
 	void OnMouseUp()
 	{
-		int newpos_x = ((int)(GetMouseWorldPos().x + mOffset.x)/Board.taille_cases)*Board.taille_cases;
-		int newpos_z = ((int)(GetMouseWorldPos().z + mOffset.z)/Board.taille_cases)*Board.taille_cases;
+		int case_x = (int)(GetMouseWorldPos().x + mOffset.x)/Board.taille_cases;
+		int case_z = (int)(GetMouseWorldPos().z + mOffset.z)/Board.taille_cases;
+		if(gameObject.GetComponent<Pion>().CanMove(case_x, case_z))
+		{
+		int newpos_x = case_x * Board.taille_cases;
+		int newpos_z = case_z * Board.taille_cases;
 		transform.position = new Vector3(newpos_x, static_height,newpos_z);
+		}else{
+			transform.position = startpos;
+		}
 	}
 }
