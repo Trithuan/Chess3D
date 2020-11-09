@@ -6,7 +6,7 @@ public class DragObject : MonoBehaviour
 {
 	private Vector3 mOffset;
 	private float mZCoord;
-	private int jump_size = 200;
+	private int jump_size = 0;
 	private float static_height = 0;
 	private Vector3 startpos;
 
@@ -41,10 +41,13 @@ public class DragObject : MonoBehaviour
 	{
 		int case_x = (int)(GetMouseWorldPos().x + mOffset.x)/Board.taille_cases;
 		int case_z = (int)(GetMouseWorldPos().z + mOffset.z)/Board.taille_cases;
+		print(case_x+","+case_z); 
 		if(gameObject.GetComponent<Pion>().CanMove(case_x, case_z))
 		{
 		int newpos_x = case_x * Board.taille_cases;
 		int newpos_z = case_z * Board.taille_cases;
+		gameObject.GetComponent<Pion>().x = case_x;
+		gameObject.GetComponent<Pion>().z = case_z;
 		transform.position = new Vector3(newpos_x, static_height,newpos_z);
 		}else{
 			transform.position = startpos;

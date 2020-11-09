@@ -40,7 +40,8 @@ public class Board : MonoBehaviour
 			pièce.transform.parent = gameObject.transform;
 			pièce.GetComponent<Renderer>().material.color = Color.gray;
 			pièce.AddComponent<Pion>();
-			pièce.GetComponent<Pion>().pos = new int[] {i, 7};
+			pièce.GetComponent<Pion>().x = i;
+			pièce.GetComponent<Pion>().z = 7;
 			pièce.AddComponent<DragObject>();
 
 			GameObject pion = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -49,7 +50,8 @@ public class Board : MonoBehaviour
 			pion.transform.parent = gameObject.transform;
 			pion.GetComponent<Renderer>().material.color = Color.gray;
 			pion.AddComponent<Pion>();
-			pion.GetComponent<Pion>().pos = new int[] {i, 6};
+			pion.GetComponent<Pion>().x = i;
+			pion.GetComponent<Pion>().z = 6;
 			pion.AddComponent<DragObject>();
 		}
 	}
